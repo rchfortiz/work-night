@@ -1,6 +1,7 @@
 import pyray
 
 from game.asset_loader import load_texture_asset
+from game.scrolling_camera import ScrollingCamera
 
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
@@ -13,11 +14,15 @@ def main() -> None:
 
     environment = load_texture_asset("environment")
 
+    scrolling_cam = ScrollingCamera()
+
     while not pyray.window_should_close():
         pyray.begin_drawing()
         pyray.clear_background(pyray.BLACK)
         display_fps()
+        scrolling_cam.begin()
         pyray.draw_texture(environment, 0, 0, pyray.WHITE)
+        scrolling_cam.end()
         pyray.end_drawing()
 
     pyray.close_window()
