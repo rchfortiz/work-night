@@ -24,9 +24,10 @@ while not pyray.window_should_close():
     pyray.begin_drawing()
     pyray.clear_background(pyray.BLACK)
     display_fps()
-    scrolling_cam.begin()
+    # TODO: Finish scrolling camera
+    # scrolling_cam.begin()
     pyray.draw_texture(environment, 0, 0, pyray.WHITE)
-    scrolling_cam.end()
+    # scrolling_cam.end()
     pyray.end_drawing()
 
 pyray.close_window()
