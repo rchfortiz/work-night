@@ -2,6 +2,7 @@ import pyray
 
 from game.asset_loader import load_texture_asset
 from game.scrolling_camera import ScrollingCamera
+from game.typing_game import TypingGame
 
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
@@ -19,14 +20,18 @@ pyray.set_target_fps(FPS_CAP)
 environment = load_texture_asset("environment")
 
 scrolling_cam = ScrollingCamera()
+typing_game = TypingGame(10, 10)
 
 while not pyray.window_should_close():
+    typing_game.update()
+
     pyray.begin_drawing()
     pyray.clear_background(pyray.BLACK)
     display_fps()
     # TODO: Finish scrolling camera
     # scrolling_cam.begin()
     pyray.draw_texture(environment, 0, 0, pyray.WHITE)
+    typing_game.draw()
     # scrolling_cam.end()
     pyray.end_drawing()
 

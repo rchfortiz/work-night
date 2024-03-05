@@ -26,3 +26,9 @@ def load_shader_asset(
         resolve_asset_path(vertex_name, "vs") if vertex_name else 0,
         resolve_asset_path(fragment_name, "fs") if fragment_name else 0,
     )
+
+
+def load_text_list_asset(name):
+    with open(resolve_asset_path(name, "txt")) as f:
+        words = f.read().splitlines()
+    return words
