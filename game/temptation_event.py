@@ -3,14 +3,7 @@ import random
 from pyray import draw_text, Color, vector2_zero, get_time, get_mouse_position
 
 from .consts import SCREEN_WIDTH, SCREEN_HEIGHT
-
-phrase_list = [
-    "Just a few minutes..",
-    "Why resist?",
-    "Won't take long..",
-    "I'll do this tomorrow..",
-    "Tonight's gonna be my break..",
-]
+from .asset_loader import load_text_list_asset
 
 
 class TemptationText:
@@ -27,7 +20,8 @@ class TemptationText:
         self.clicks = 0
         self.shaking_intensity = 1
         self.alpha = 255
-        self.set_text(phrase_list[random.randint(0, len(phrase_list) - 1)])
+        self._phrases = load_text_list_asset("temptation_phrases")
+        self.set_text(self._phrases[random.randint(0, len(self._phrases) - 1)])
 
     def click(self):
         self.clicks = self.clicks + 1
