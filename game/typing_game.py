@@ -2,7 +2,7 @@ import random
 
 from pyray import draw_text, Color, is_key_pressed, BLACK
 
-from game.asset_loader import load_text_list_asset
+from .asset_loader import load_text_list_asset
 
 TRANSLUCENT_BLACK = Color(0, 0, 0, 64)
 

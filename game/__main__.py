@@ -1,9 +1,9 @@
 import pyray
 
-from game.asset_loader import load_texture_asset
-from game.scrolling_camera import ScrollingCamera
-from game.typing_game import TypingGame
-from game.temptation_event import TemptationEvent
+from .asset_loader import load_texture_asset
+from .scrolling_camera import ScrollingCamera
+from .typing_game import TypingGame
+from .temptation_event import TemptationEvent
 
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
