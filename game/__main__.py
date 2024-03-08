@@ -4,10 +4,7 @@ from .asset_loader import load_texture_asset
 from .scrolling_camera import ScrollingCamera
 from .typing_game import TypingGame
 from .temptation_event import TemptationEvent
-
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
-FPS_CAP = 60
+from .consts import SCREEN_WIDTH, SCREEN_HEIGHT, FPS_CAP
 
 
 def display_fps():

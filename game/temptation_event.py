@@ -1,10 +1,8 @@
 import random
-import math
 
 from pyray import draw_text, Color, vector2_zero, get_time, get_mouse_position
 
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
+from .consts import SCREEN_WIDTH, SCREEN_HEIGHT
 
 phrase_list = [
     "Just a few minutes..",
@@ -66,14 +64,14 @@ class TemptationText:
 class TemptationEvent:
     def new_texts(self, text_amount, clicks_range):
         self.texts = []
-        for i in range(text_amount):
+        for _ in range(text_amount):
             rand_x = random.randint(
-                math.floor((SCREEN_WIDTH / 2) - (SCREEN_WIDTH / 3)),
-                math.floor((SCREEN_WIDTH / 2) + (SCREEN_WIDTH / 3)),
+                (SCREEN_WIDTH // 2) - (SCREEN_WIDTH // 3),
+                (SCREEN_WIDTH // 2) + (SCREEN_WIDTH // 3),
             )
             rand_y = random.randint(
-                math.floor((SCREEN_HEIGHT / 2) - (SCREEN_HEIGHT / 3)),
-                math.floor((SCREEN_HEIGHT / 2) + (SCREEN_HEIGHT / 3)),
+                (SCREEN_HEIGHT // 2) - (SCREEN_HEIGHT // 3),
+                (SCREEN_HEIGHT // 2) + (SCREEN_HEIGHT // 3),
             )
             self.texts.append(
                 TemptationText(rand_x, rand_y, random.randint(1, clicks_range))
