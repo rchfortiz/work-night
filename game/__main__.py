@@ -22,8 +22,6 @@ typing_game = TypingGame(10, 10)
 
 # Debugging Test
 tempt_event = TemptationEvent(5, 3)
-for object in tempt_event.texts:
-    print(object.text)
 tempt_event.start()
 
 while not pyray.window_should_close():
