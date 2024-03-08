@@ -4,7 +4,7 @@ from .asset_loader import load_texture_asset
 from .scrolling_camera import ScrollingCamera
 from .typing_game import TypingGame
 from .temptation_event import TemptationEvent
-from .consts import SCREEN_WIDTH, SCREEN_HEIGHT, FPS_CAP
+from .consts import SCREEN_WIDTH, SCREEN_HEIGHT, FPS_CAP, MONITOR_X, MONITOR_Y
 
 
 def display_fps():
@@ -18,7 +18,7 @@ pyray.set_target_fps(FPS_CAP)
 environment = load_texture_asset("environment")
 
 scrolling_cam = ScrollingCamera(SCREEN_HEIGHT / environment.height)
-typing_game = TypingGame(10, 10)
+typing_game = TypingGame(MONITOR_X, MONITOR_Y)
 
 # Debugging Test
 tempt_event = TemptationEvent(5, 3)
