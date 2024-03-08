@@ -21,7 +21,7 @@ class TypingGame:
         self.choose_random_text()
 
     def choose_random_text(self):
-        self.current_text = " ".join(random.sample(self._word_list, 3))
+        self.current_text = " ".join(random.sample(self._word_list, 4))
 
     def update(self):
         if not self.current_text or not self.can_continue_typing:
@@ -39,5 +39,5 @@ class TypingGame:
             self.current_typing_index = 0
 
     def draw(self):
-        draw_text(self.current_text, self.x, self.y, 24, TRANSLUCENT_BLACK)
-        draw_text(self.current_typing_text, self.x, self.y, 24, BLACK)
+        draw_text(self.current_text, self.x, self.y, 20, TRANSLUCENT_BLACK)
+        draw_text(self.current_typing_text, self.x, self.y, 20, BLACK)
