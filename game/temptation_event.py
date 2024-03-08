@@ -1,6 +1,13 @@
 import random
 
-from pyray import draw_text, Color, vector2_zero, get_time, get_mouse_position
+from pyray import (
+    draw_text,
+    Color,
+    vector2_zero,
+    get_time,
+    get_mouse_position,
+    get_screen_to_world_2d,
+)
 
 from .consts import SCREEN_WIDTH, SCREEN_HEIGHT
 from .asset_loader import load_text_list_asset
@@ -91,8 +98,8 @@ class TemptationEvent:
                     continue
                 text.draw()
 
-    def click(self):
-        mouse_position = get_mouse_position()
+    def click(self, cam):
+        mouse_position = get_screen_to_world_2d(get_mouse_position(), cam.cam)
         for text in self.texts:
             if text.is_position_within_self(mouse_position):
                 text.click()

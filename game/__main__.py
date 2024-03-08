@@ -37,7 +37,7 @@ while not pyray.window_should_close():
     if tempt_event.ongoing:
         tempt_event.draw()
         if pyray.is_mouse_button_pressed(pyray.MOUSE_BUTTON_LEFT):
-            tempt_event.click()
+            tempt_event.click(scrolling_cam)
     scrolling_cam.end()
     pyray.end_drawing()
 
