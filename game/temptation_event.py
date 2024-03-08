@@ -24,7 +24,7 @@ class TemptationText:
         self.set_text(self._phrases[random.randint(0, len(self._phrases) - 1)])
 
     def click(self):
-        self.clicks = self.clicks + 1
+        self.clicks += 1
         self.shaking_intensity = 10
 
     def delete(self):
@@ -37,7 +37,7 @@ class TemptationText:
         if self.alpha <= 0:
             self.delete()
         if self.shaking_intensity != 1:
-            self.shaking_intensity = self.shaking_intensity - 1
+            self.shaking_intensity -= 1
         draw_text(
             self.text,
             self.x + random.randint(-1, 1) * self.shaking_intensity,
