@@ -30,11 +30,8 @@ while not pyray.window_should_close():
     pyray.begin_drawing()
     pyray.clear_background(pyray.BLACK)
     display_fps()
-
-    # TODO: Finish scrolling camera
     scrolling_cam.begin()
     scrolling_cam.update(environment)
-
     pyray.draw_texture(environment, 0, 0, pyray.WHITE)
     typing_game.draw()
     if tempt_event.ongoing:
