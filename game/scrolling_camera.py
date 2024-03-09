@@ -4,7 +4,7 @@ from .consts import SCREEN_HEIGHT, SCREEN_WIDTH
 
 
 class ScrollingCamera:
-    def __init__(self, zoom, speed=400):
+    def __init__(self, zoom, speed=600):
         self.cam = pyray.Camera2D(pyray.vector2_zero(), pyray.vector2_zero(), 0.0, zoom)
         self.speed = speed
         self.x_offset = 0.0
