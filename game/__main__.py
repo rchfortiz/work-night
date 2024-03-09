@@ -4,7 +4,8 @@ from .asset_loader import load_texture_asset
 from .scrolling_camera import ScrollingCamera
 from .typing_game import TypingGame
 from .temptation_event import TemptationEvent
-from .consts import SCREEN_WIDTH, SCREEN_HEIGHT, MONITOR_X, MONITOR_Y
+from .clock import Clock
+from .consts import SCREEN_WIDTH, SCREEN_HEIGHT, MONITOR_X, MONITOR_Y, CLOCK_X, CLOCK_Y
 
 
 def display_fps():
@@ -19,6 +20,7 @@ environment = load_texture_asset("environment")
 
 scrolling_cam = ScrollingCamera(SCREEN_HEIGHT / environment.height)
 typing_game = TypingGame(MONITOR_X, MONITOR_Y)
+clock = Clock(CLOCK_X, CLOCK_Y)
 
 # Debugging Test
 tempt_event = TemptationEvent(5, 3)
@@ -38,6 +40,8 @@ while not pyray.window_should_close():
         tempt_event.draw()
         if pyray.is_mouse_button_pressed(pyray.MOUSE_BUTTON_LEFT):
             tempt_event.click(scrolling_cam)
+    clock.update()
+    clock.draw()
     scrolling_cam.end()
     pyray.end_drawing()
 
