@@ -23,7 +23,7 @@ class TypingGame:
     def choose_random_text(self):
         self.current_text = " ".join(random.sample(self._word_list, 4))
 
-    def update(self):
+    def update(self, motivation_bar):
         if not self.current_text or not self.can_continue_typing:
             return
 
@@ -31,6 +31,7 @@ class TypingGame:
         if is_key_pressed(ord(letter.upper())):
             self.current_typing_index += 1
             self.current_typing_text = self.current_text[: self.current_typing_index]
+            motivation_bar.percent -= 0.005
 
         if self.current_typing_text == self.current_text:
             # Finished the text
