@@ -1,4 +1,4 @@
-import random
+import random, time, math, datetime
 
 from pyray import (
     draw_text,
@@ -12,6 +12,13 @@ from pyray import (
 from .consts import SCREEN_WIDTH, SCREEN_HEIGHT
 from .asset_loader import load_text_list_asset
 
+def temptation_chance(tempt_event, chance):
+    if time.time() - tempt_event.time_ended > 30:
+        random_int = random.randint(1, 100)
+        if random_int <= chance and not tempt_event.ongoing:
+            tempt_event.start()
+        else:
+            tempt_event.time_ended = time.time()
 
 class TemptationText:
     def set_text(self, text):
@@ -78,25 +85,41 @@ class TemptationEvent:
                 TemptationText(rand_x, rand_y, random.randint(1, clicks_range))
             )
 
-    def __init__(self, text_amount, clicks_range):
+    def __init__(self, text_amount, clicks_range, typing_game, clock):
         self.ongoing = False
         self.texts = []
-        self.time_started = get_time()
+        self.time_started = time.time()
+        self.time_ended = time.time()
         self.new_texts(text_amount, clicks_range)
+        self.typing_game = typing_game
+        self.clock = clock
 
     def start(self):
         self.ongoing = True
-        self.time_started = get_time()
+        self.time_started = time.time()
+        self.time_ended = math.inf
 
     def draw(self):
         if self.ongoing:
+            self.typing_game.can_continue_typing = False
             if len(self.texts) == 0:
                 self.ongoing = False
+                self.typing_game.can_continue_typing = True
+                self.time_started = math.inf
+                self.time_ended = time.time()
+
             for text in self.texts:
                 if text.text == "":
                     self.texts.pop(self.texts.index(text))
                     continue
                 text.draw()
+            
+            if time.time() - self.time_started > 7 and len(self.texts) > 0:
+                print("Procrastinated!")
+                for text in self.texts:
+                    text.delete()
+                self.clock.time += datetime.timedelta(minutes=5)
+                self.time_started = math.inf
 
     def click(self, cam):
         mouse_position = get_screen_to_world_2d(get_mouse_position(), cam.cam)

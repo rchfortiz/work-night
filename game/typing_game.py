@@ -15,6 +15,7 @@ class TypingGame:
         self.current_typing_text = ""
         self.current_typing_index = 0
         self.can_continue_typing = True
+        self.amount_typed = 0
 
         self._word_list = load_text_list_asset("words")
 
@@ -28,13 +29,18 @@ class TypingGame:
             return
 
         letter = self.current_text[self.current_typing_index]
+        if letter.upper() == " ":
+            self.amount_typed += 1
+            self.current_typing_index += 1
         if is_key_pressed(ord(letter.upper())):
             self.current_typing_index += 1
             self.current_typing_text = self.current_text[: self.current_typing_index]
             motivation_bar.percent -= 0.005
+        
 
         if self.current_typing_text == self.current_text:
             # Finished the text
+            self.amount_typed += 1
             self.choose_random_text()
             self.current_typing_text = ""
             self.current_typing_index = 0
@@ -42,3 +48,4 @@ class TypingGame:
     def draw(self):
         draw_text(self.current_text, self.x, self.y, 20, TRANSLUCENT_BLACK)
         draw_text(self.current_typing_text, self.x, self.y, 20, BLACK)
+        draw_text(str(self.amount_typed), self.x, self.y + 20, 20, BLACK)
