@@ -10,6 +10,9 @@ class MotivationBar:
         self.percent = 1.0
 
     def update(self):
+        if self.percent <= 0.25:
+            self.percent += 0.0005
+
         self.percent = clamp(self.percent, 0.0, 1.0)
 
     def draw(self):
