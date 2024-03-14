@@ -18,8 +18,8 @@ class MotivationBar:
             self.typing_game.can_continue_typing = False
             self.color = PURPLE
         if self.resting:
-            self.percent += .0005
-            if self.percent >= .99:
+            self.percent += 0.0005
+            if self.percent >= 0.99:
                 self.resting = False
                 self.color = ORANGE
                 self.typing_game.can_continue_typing = True

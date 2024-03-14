@@ -36,7 +36,6 @@ class TypingGame:
             self.current_typing_index += 1
             self.current_typing_text = self.current_text[: self.current_typing_index]
             motivation_bar.percent -= 0.005
-        
 
         if self.current_typing_text == self.current_text:
             # Finished the text

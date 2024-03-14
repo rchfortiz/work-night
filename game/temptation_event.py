@@ -12,6 +12,7 @@ from pyray import (
 from .consts import SCREEN_WIDTH, SCREEN_HEIGHT
 from .asset_loader import load_text_list_asset
 
+
 def temptation_chance(tempt_event, chance):
     if time.time() - tempt_event.time_ended > 30:
         random_int = random.randint(1, 100)
@@ -19,6 +20,7 @@ def temptation_chance(tempt_event, chance):
             tempt_event.start()
         else:
             tempt_event.time_ended = time.time()
+
 
 class TemptationText:
     def set_text(self, text):
@@ -113,7 +115,7 @@ class TemptationEvent:
                     self.texts.pop(self.texts.index(text))
                     continue
                 text.draw()
-            
+
             if time.time() - self.time_started > 7 and len(self.texts) > 0:
                 print("Procrastinated!")
                 for text in self.texts:
