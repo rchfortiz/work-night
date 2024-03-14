@@ -1,10 +1,8 @@
 import random
 
-from pyray import draw_text, Color, is_key_pressed, BLACK
+from pyray import draw_text, is_key_pressed, GREEN, GRAY
 
 from .asset_loader import load_text_list_asset
-
-TRANSLUCENT_BLACK = Color(0, 0, 0, 64)
 
 
 class TypingGame:
@@ -45,6 +43,6 @@ class TypingGame:
             self.current_typing_index = 0
 
     def draw(self):
-        draw_text(self.current_text, self.x, self.y, 20, TRANSLUCENT_BLACK)
-        draw_text(self.current_typing_text, self.x, self.y, 20, BLACK)
-        draw_text(str(self.amount_typed), self.x, self.y + 20, 20, BLACK)
+        draw_text(self.current_text, self.x, self.y, 24, GRAY)
+        draw_text(self.current_typing_text, self.x, self.y, 24, GREEN)
+        draw_text(str(self.amount_typed), self.x, self.y + 28, 24, GREEN)

@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, MINYEAR
 
-from pyray import draw_text, BLACK, get_frame_time, RED
+from pyray import draw_text, WHITE, get_frame_time, RED
 
 
 class Clock:
@@ -26,7 +26,7 @@ class Clock:
 
     def draw(self):
         if not self.due:
-            draw_text(f"{self.format_time_am_pm()}", self.x, self.y, 20, BLACK)
+            draw_text(f"{self.format_time_am_pm()}", self.x, self.y, 20, WHITE)
         else:
             draw_text("UH OH!", self.x, self.y, 20, RED)
 
