@@ -1,5 +1,7 @@
 import pyray
 
+from tkinter import messagebox
+from .welcome_screen import welcome
 from .asset_loader import load_texture_asset
 from .scrolling_camera import ScrollingCamera
 from .typing_game import TypingGame
@@ -8,11 +10,10 @@ from .clock import Clock
 from .motivation_bar import MotivationBar
 from .consts import SCREEN_WIDTH, SCREEN_HEIGHT, MONITOR_X, MONITOR_Y, CLOCK_X, CLOCK_Y
 
-
+#Initialization of screens
 def display_fps():
     fps = pyray.get_fps()
     pyray.draw_text(f"{fps} FPS", 10, 10, 20, pyray.WHITE)
-
 
 pyray.set_config_flags(pyray.ConfigFlags.FLAG_VSYNC_HINT)
 pyray.init_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Work Night")
@@ -25,6 +26,9 @@ clock = Clock(CLOCK_X, CLOCK_Y)
 motivation_bar = MotivationBar(10, 10, typing_game)
 
 tempt_event = TemptationEvent(5, 3, typing_game, clock)
+
+#Draw Welcome Screen
+welcome()
 
 while not pyray.window_should_close():
     motivation_bar.update()
