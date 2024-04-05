@@ -1,6 +1,6 @@
 import random
 
-from pyray import draw_text, is_key_pressed, GREEN, GRAY
+from pyray import draw_text, is_key_pressed, get_key_pressed, GREEN, GRAY
 
 from .asset_loader import load_text_list_asset
 
@@ -33,6 +33,7 @@ class TypingGame:
         if is_key_pressed(ord(letter.upper())):
             self.current_typing_index += 1
             self.current_typing_text = self.current_text[: self.current_typing_index]
+        if get_key_pressed() != 0:
             motivation_bar.percent -= 0.005
 
         if self.current_typing_text == self.current_text:
