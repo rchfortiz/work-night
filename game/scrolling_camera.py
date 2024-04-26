@@ -18,8 +18,9 @@ class ScrollingCamera:
         elif mouse_pos.x > (SCREEN_WIDTH / 4) + SCREEN_HEIGHT:
             self.x_offset -= self.speed * delta_time
 
+        # -(environment.width - (SCREEN_WIDTH / self.cam.zoom))
         self.x_offset = pyray.clamp(
-            self.x_offset, -(environment.width - (SCREEN_WIDTH / self.cam.zoom)), 0
+            self.x_offset, -240, 0
         )
         self.cam.offset.x = self.x_offset
 

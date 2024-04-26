@@ -68,7 +68,7 @@ class TemptationText:
         )
 
     def get_color(self):
-        return Color(0, 0, 0, self.alpha)
+        return Color(255, 255, 255, self.alpha)
 
 
 class TemptationEvent:
