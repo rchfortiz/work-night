@@ -9,7 +9,7 @@ class ScrollingCamera:
         self.speed = speed
         self.x_offset = 0.0
 
-    def update(self, environment):
+    def update(self):
         delta_time = pyray.get_frame_time()
 
         mouse_pos = pyray.get_mouse_position()

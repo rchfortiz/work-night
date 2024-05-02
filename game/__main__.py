@@ -39,7 +39,7 @@ while not pyray.window_should_close():
     pyray.clear_background(pyray.BLACK)
     display_fps()
     scrolling_cam.begin()
-    scrolling_cam.update(environment)
+    scrolling_cam.update()
     pyray.draw_texture(environment, 0, 0, pyray.WHITE)
     typing_game.draw()
     temptation_chance(tempt_event, 50)
