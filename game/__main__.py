@@ -21,7 +21,7 @@ pyray.init_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Work Night")
 
 environment = load_texture_asset("environment")
 
-scrolling_cam = ScrollingCamera(SCREEN_HEIGHT / environment.height)
+scrolling_cam = ScrollingCamera(0.8, -50.0)
 typing_game = TypingGame(MONITOR_X, MONITOR_Y)
 clock = Clock(CLOCK_X, CLOCK_Y)
 motivation_bar = MotivationBar(10, 10, typing_game)
