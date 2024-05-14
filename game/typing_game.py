@@ -4,6 +4,10 @@ from pyray import draw_text, is_key_pressed, get_key_pressed, GREEN, GRAY
 
 from .asset_loader import load_text_list_asset
 
+from .consts import WORDS_TO_TYPE
+
+from .sfx import play_random_typing_sound, play_loaded_music
+
 
 class TypingGame:
     def __init__(self, x, y):
@@ -33,6 +37,7 @@ class TypingGame:
         if is_key_pressed(ord(letter.upper())):
             self.current_typing_index += 1
             self.current_typing_text = self.current_text[: self.current_typing_index]
+            play_random_typing_sound()
         if get_key_pressed() != 0:
             motivation_bar.percent -= 0.005
 
@@ -46,4 +51,4 @@ class TypingGame:
     def draw(self):
         draw_text(self.current_text, self.x, self.y, 24, GRAY)
         draw_text(self.current_typing_text, self.x, self.y, 24, GREEN)
-        draw_text(str(self.amount_typed), self.x, self.y + 28, 24, GREEN)
+        draw_text(str(self.amount_typed) + " / " + str(WORDS_TO_TYPE), self.x, self.y + 28, 24, GREEN)

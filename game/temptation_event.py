@@ -11,12 +11,16 @@ from pyray import (
 
 from .consts import SCREEN_WIDTH, SCREEN_HEIGHT
 from .asset_loader import load_text_list_asset
+from .sfx import play_loaded_sound, play_loaded_music, stop_loaded_music
+from .black_frame import show_black_frame
 
 
 def temptation_chance(tempt_event, chance):
-    if time.time() - tempt_event.time_ended > 30:
+    if time.time() - tempt_event.time_ended > 10:
         random_int = random.randint(1, 100)
+        print(random_int, tempt_event.ongoing)
         if random_int <= chance and not tempt_event.ongoing:
+            print("sucessful")
             tempt_event.start()
         else:
             tempt_event.time_ended = time.time()
@@ -42,6 +46,7 @@ class TemptationText:
     def click(self):
         self.clicks += 1
         self.shaking_intensity = 10
+        play_loaded_sound("woosh")
 
     def delete(self):
         self.text = ""
@@ -92,23 +97,28 @@ class TemptationEvent:
         self.texts = []
         self.time_started = time.time()
         self.time_ended = time.time()
-        self.new_texts(text_amount, clicks_range)
         self.typing_game = typing_game
+        self.text_amount = text_amount
+        self.clicks_range = clicks_range
         self.clock = clock
 
     def start(self):
         self.ongoing = True
         self.time_started = time.time()
         self.time_ended = math.inf
+        self.new_texts(self.text_amount, self.clicks_range)
+        play_loaded_music("heartbeat")
 
-    def draw(self):
+    def draw(self, motivation_bar):
         if self.ongoing:
             self.typing_game.can_continue_typing = False
             if len(self.texts) == 0:
                 self.ongoing = False
-                self.typing_game.can_continue_typing = True
+                if not motivation_bar.resting:
+                    self.typing_game.can_continue_typing = True
                 self.time_started = math.inf
                 self.time_ended = time.time()
+                stop_loaded_music("heartbeat")
 
             for text in self.texts:
                 if text.text == "":
@@ -117,10 +127,11 @@ class TemptationEvent:
                 text.draw()
 
             if time.time() - self.time_started > 7 and len(self.texts) > 0:
+                show_black_frame(2)
                 print("Procrastinated!")
                 for text in self.texts:
                     text.delete()
-                self.clock.time += datetime.timedelta(minutes=5)
+                self.clock.time += datetime.timedelta(minutes=30)
                 self.time_started = math.inf
 
     def click(self, cam):

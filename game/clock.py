@@ -4,9 +4,7 @@ from pyray import draw_text, WHITE, get_frame_time, RED
 
 
 class Clock:
-    def __init__(
-        self, x, y, initial_hour=8, initial_minute=0, deadline_hour=11, speed=10
-    ):
+    def __init__(self, x, y, initial_hour=8, initial_minute=0, deadline_hour=10, speed=10):
         self.x = x
         self.y = y
 
